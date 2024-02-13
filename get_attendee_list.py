@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup as bs
+import pandas as pd
 from constants import INFILE
 from ViVE import ViVECompany, load_file
 
@@ -21,3 +22,7 @@ def main(html_file=INFILE, csv_file=OUTFILE):
 	# export to excel
 	df = pd.DataFrame(objects)
 	df.to_csv(csv_file, index=False)
+
+
+if __name__ == '__main__':
+	main()

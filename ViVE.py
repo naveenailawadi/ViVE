@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup as bs
 # class for the company
 class ViVECompany:
 	# company tag
-	company_tag
+	company_tag = None
 
 	def __init__(self, new_company_tag):
 		# store the tag
@@ -12,7 +12,12 @@ class ViVECompany:
 
 	# function to get an attribute from a span tag class
 	def get_attribute(self, tag_class):
-		return self.tag.find("span", class_=tag_class).contents[0].strip()
+		attribute = self.company_tag.find("span", class_=tag_class)
+
+		if attribute:
+			return attribute.contents[0].strip()
+		else:
+			return 'N/A'
 
 	# get the company name
 	@property	
@@ -27,7 +32,7 @@ class ViVECompany:
 	# get the attendee title
 	@property
 	def attendee_title(self):
-		return self.get_attribute("clamp__Clamp-ui__sc-1aq2rfp-0 list__Organization-cmp__sc-10fr9dg-10 hAEPUd gFtQuZ")
+		return self.get_attribute("clamp__Clamp-ui__sc-1aq2rfp-0 list__Job-cmp__sc-10fr9dg-9 hAEPUd hgzTsV")
 
 	# get the full information in a dictionary
 	@property
