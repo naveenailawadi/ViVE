@@ -1,18 +1,14 @@
 from bs4 import BeautifulSoup as bs
+from constants import INFILE
+from ViVE import load_file
 import pandas as pd
-
-# html_file name
-INFILE = 'vive_attendees.html'
 
 # csv file name
 OUTFILE = 'vive_companies.csv'
 
-
 def main(html_file=INFILE, csv_file=OUTFILE):
 	# open the html_file
-	with open(html_file, 'r', encoding='utf8') as infile:
-		# make a soup
-		soup = bs(infile.read(), 'html.parser')
+	soup = load_file(html_file)
 
 	# get all company tags
 	company_tags = soup.find_all("span", class_="clamp__Clamp-ui__sc-1aq2rfp-0 list__Organization-cmp__sc-10fr9dg-10 hAEPUd gFtQuZ")
